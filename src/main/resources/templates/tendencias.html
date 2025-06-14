@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tendencias - TrendSnatch</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header-nav}"></div>
+
+<main class="container my-5">
+    <div class="text-center">
+        <h1>Tendencias de la Semana</h1>
+        <p class="lead">Un análisis de lo que está marcando la pauta en las redes sociales.</p>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">Estilo "Aesthetic"</h3>
+                    <p class="card-text">La moda aesthetic sigue dominando TikTok con sus paletas de colores pastel, prendas oversize y un toque nostálgico de los 90. Busca nuestros hoodies y pantalones cargo para unirte a la tendencia.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">Streetwear de Lujo</h3>
+                    <p class="card-text">En Instagram, el streetwear evoluciona. Zapatillas exclusivas, conjuntos de alta calidad y accesorios llamativos son la clave. Descubre nuestra colección de lentes y gorras virales.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer-main}"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

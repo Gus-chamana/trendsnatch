@@ -1,0 +1,287 @@
+/* =============================
+   Estilo General - Dashboard
+============================= */
+
+body {
+    background-color: #121212;
+    color: #f8f9fa;
+    font-family: 'Lato', sans-serif;
+}
+
+main h1, .card-title, h5, h3 {
+    color: #ffffff;
+}
+
+/* =============================
+   Tarjetas estadísticas
+============================= */
+
+.stat-card {
+    border-radius: 15px;
+    color: white;
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    color: white;
+}
+
+.stat-icon {
+    font-size: 4rem;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.2;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+/* Colores vivos */
+.bg-primary-vibrant { background-color: #007bff; }
+.bg-success-vibrant { background-color: #28a745; }
+.bg-info-vibrant { background-color: #17a2b8; }
+
+.bg-primary-vibrant:hover { background-color: #0069d9; }
+.bg-success-vibrant:hover { background-color: #218838; }
+.bg-info-vibrant:hover { background-color: #138496; }
+
+/* =============================
+   Sección: Bajo Stock
+============================= */
+
+.card {
+    background-color: #1e1e1e;
+    border: none;
+    color: #f8f9fa;
+    border-radius: 12px;
+}
+
+.card-header {
+    background-color: #2a2a2a;
+    border-bottom: 1px solid #444;
+}
+
+.low-stock-alert {
+    border-left-width: 5px;
+    border-left-style: solid;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    background-color: #2d2d2d;
+    color: #f8f9fa;
+}
+
+.alert-warning.low-stock-alert { border-left-color: #ffc107; }
+.alert-danger.low-stock-alert { border-left-color: #dc3545; }
+
+.sin-stock-msg {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+    border: 1px solid #28a745;
+    border-radius: 10px;
+    font-weight: 500;
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.2);
+}
+
+/* =============================
+   Ganancias Totales
+============================= */
+
+.progress {
+    background-color: #2f2f2f;
+    border-radius: 10px;
+}
+
+.progress-bar {
+    transition: width 0.6s ease;
+}
+
+/* =============================
+   Pedidos por Estado
+============================= */
+
+.list-group-item {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    border-color: #333;
+}
+
+.badge.bg-success {
+    background-color: #28a745 !important;
+}
+
+.badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+}
+
+.badge.bg-info {
+    background-color: #17a2b8 !important;
+    color: #212529 !important;
+}
+
+/* =============================
+   Ranking de productos
+============================= */
+
+.ranking-list .list-group-item {
+    border: none;
+    padding: 1rem;
+    background-color: #1e1e1e;
+}
+
+.rank-badge {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+
+.rank-1 { background-color: #ffd700; } /* Oro */
+.rank-2 { background-color: #c0c0c0; } /* Plata */
+.rank-3 { background-color: #cd7f32; } /* Bronce */
+.rank-4, .rank-5 { background-color: #666; }
+
+/* =============================
+   Timeline de Actividad
+============================= */
+
+.timeline {
+    list-style: none;
+    padding: 0;
+    position: relative;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    width: 2px;
+    background-color: #444;
+}
+
+.timeline-item {
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 50px;
+    color: #e0e0e0;
+}
+
+.timeline-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #007bff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* =============================
+   Botones
+============================= */
+
+.btn-dark {
+    background-color: #343a40;
+    color: #f8f9fa;
+    border: none;
+}
+
+.btn-dark:hover {
+    background-color: #23272b;
+    transform: scale(1.03);
+}
+
+a.btn {
+    transition: all 0.3s ease;
+}
+/* Fix texto oscuro sobre fondo oscuro */
+.progress-bar {
+    color: #ffffff;
+}
+
+.card-title,
+.card-header,
+.card h5 {
+    color: #ffffff !important;
+}
+/* Texto blanco para títulos de tarjetas y secciones */
+/* Estilo para textos de encabezado */
+.card-header,
+.card-header .card-title,
+.card .card-title,
+.card-body h5,
+.card-body h6,
+.card-body h4 {
+    color: #ffffff !important;
+    background-color: #1c1c1c !important; /* Fondo oscuro para títulos */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Asegura que el fondo de las tarjetas sea oscuro si deseas coherencia visual */
+.card {
+    background-color: #2a2a2a;
+    color: #f0f0f0;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Mejora para que los iconos en los encabezados destaquen */
+.card-header i {
+    color: #ffffff !important;
+}
+
+/* Listas dentro de tarjetas */
+.list-group-item {
+    background-color: transparent;
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Etiquetas de estado (badges) */
+.badge {
+    color: #ffffff;
+}
+
+/* Barra de progreso */
+.progress-bar {
+    color: #ffffff;
+}
+
+/* Asegura que los enlaces y botones se vean en fondos oscuros */
+a, a:hover, a:visited {
+    color: #00d4ff;
+}
+
+.btn-dark {
+    color: #ffffff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+/* Ajusta color de fechas para que se vean bien en fondos oscuros */
+.timeline-item small,
+.card-body small,
+.text-muted {
+    color: #cccccc !important;
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Usuarios - Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header-nav}"></div>
+<main class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Gestión de Usuarios</h1>
+  </div>
+
+  <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+    <span th:text="${successMessage}"></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <span th:text="${errorMessage}"></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+      <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Rol</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="user : ${usuarios}">
+        <td th:text="${user.id}">1</td>
+        <td th:text="${user.nombre}">Nombre de Usuario</td>
+        <td th:text="${user.correo}">usuario@correo.com</td>
+        <td>
+          <span class="badge" th:classappend="${user.rol.nombre == 'ROLE_ADMIN' ? 'bg-danger' : 'bg-primary'}" th:text="${user.rol.nombre}"></span>
+        </td>
+        <td>
+          <span class="badge" th:classappend="${user.activo ? 'bg-success' : 'bg-secondary'}" th:text="${user.activo ? 'Activo' : 'Bloqueado'}"></span>
+        </td>
+        <td>
+          <button class="btn btn-sm btn-info" title="Cambiar Rol" data-bs-toggle="modal" th:data-bs-target="'#rolModal-' + ${user.id}"><i class="bi bi-person-gear"></i></button>
+          <button class="btn btn-sm" th:classappend="${user.activo ? 'btn-warning' : 'btn-success'}" title="Bloquear/Desbloquear" data-bs-toggle="modal" th:data-bs-target="'#bloqueoModal-' + ${user.id}">
+            <i class="bi" th:classappend="${user.activo ? 'bi-slash-circle' : 'bi-check-circle'}"></i>
+          </button>
+          <button class="btn btn-sm btn-danger" title="Eliminar Usuario" data-bs-toggle="modal" th:data-bs-target="'#eliminarModal-' + ${user.id}"><i class="bi bi-trash"></i></button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div th:each="user : ${usuarios}">
+
+    <div class="modal fade" th:id="'rolModal-' + ${user.id}" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form th:action="@{/admin/usuarios/cambiar-rol}" method="post">
+            <div class="modal-header">
+              <h5 class="modal-title">Cambiar Rol de <span th:text="${user.nombre}"></span></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <input type="hidden" name="usuarioId" th:value="${user.id}">
+              <label for="rolSelect" class="form-label">Seleccionar nuevo rol:</label>
+              <select class="form-select" id="rolSelect" name="rolId">
+                <option th:each="rol : ${roles}" th:value="${rol.id}" th:text="${rol.nombre}" th:selected="${rol.id == user.rol.id}"></option>
+              </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" th:id="'bloqueoModal-' + ${user.id}" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmación</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>¿Estás seguro de que quieres
+              <strong th:text="${user.activo ? 'BLOQUEAR' : 'DESBLOQUEAR'}"></strong>
+              al usuario <strong th:text="${user.nombre}"></strong>?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <form th:action="@{/admin/usuarios/toggle-bloqueo/{id}(id=${user.id})}" method="post">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn" th:classappend="${user.activo ? 'btn-warning' : 'btn-success'}" th:text="${user.activo ? 'Sí, bloquear' : 'Sí, desbloquear'}"></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" th:id="'eliminarModal-' + ${user.id}" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">¡Acción Irreversible!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>¿Estás seguro de que quieres <strong>ELIMINAR PERMANENTEMENTE</strong> al usuario <strong th:text="${user.nombre}"></strong>? Esta acción no se puede deshacer.</p>
+          </div>
+          <div class="modal-footer">
+            <form th:action="@{/admin/usuarios/eliminar/{id}(id=${user.id})}" method="post">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-danger">Sí, eliminar permanentemente</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+<div th:replace="~{fragments/footer :: footer-main}"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

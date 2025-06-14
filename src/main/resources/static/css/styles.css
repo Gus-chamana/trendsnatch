@@ -1,0 +1,1069 @@
+/* === Estructura general de layout fijo === */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* === Footer fijo abajo solo si hay poco contenido === */
+footer.footer {
+    flex-shrink: 0;
+    background-color: #1a1a1a;
+    color: white;
+    padding: 2rem 0;
+}
+
+/* === Header fijo arriba === */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #121212;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+/* Evita que el contenido del header tape elementos */
+body > div:first-child {
+    margin-bottom: 0;
+}
+
+
+/* === Estilo General para la Página Index === */
+
+.index-page {
+    background-color: #0f0f0f;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+}
+
+/* === Hero Banner Principal === */
+.hero-banner {
+    min-height: 60vh; /* 80% del alto de la pantalla */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+    url('/images/hero_banner.jpg') center center / cover no-repeat;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+}
+
+
+
+
+.hero-banner h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.hero-banner .btn-primary {
+    background-color: #4caf50;
+    border: none;
+}
+
+.hero-banner .btn-primary:hover {
+    background-color: #43a047;
+}
+
+/* === Tarjetas de Producto === */
+.product-card {
+    background-color: #1e1e1e;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 255, 128, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0, 255, 128, 0.3);
+}
+
+.product-card .card-title,
+.product-card .card-text {
+    color: #ffffff;
+}
+
+.product-card .btn-outline-primary {
+    color: #4caf50;
+    border-color: #4caf50;
+}
+
+.product-card .btn-outline-primary:hover {
+    background-color: #4caf50;
+    color: #ffffff;
+}
+
+/* === Sección Descubre por Red Social === */
+.descubre-social-section {
+    background: linear-gradient(135deg, #121212, #1e1e1e);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+}
+
+.descubre-social-section h3 {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.descubre-social-section p {
+    color: #cccccc;
+    margin-bottom: 1.5rem;
+}
+
+.btn-explorar-social {
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-explorar-social:hover {
+    background-color: #43a047;
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.6);
+}
+.descubre-social-section .descubre-texto {
+    color: #ffffff;
+}
+/* === HEADER OSCURO CON ACENTO VERDE === */
+header .navbar {
+    background: linear-gradient(90deg, #000000, #1a1a1a);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+header .navbar-brand {
+    color: #4caf50;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    transition: color 0.3s ease;
+}
+
+header .navbar-brand:hover {
+    color: #43a047;
+}
+
+header .nav-link {
+    color: #e0e0e0;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+header .nav-link:hover {
+    color: #4caf50;
+}
+
+header .nav-link.text-danger {
+    color: #ff6b6b !important;
+}
+
+header .nav-link.text-danger:hover {
+    color: #ff4c4c !important;
+}
+
+/* Íconos del header */
+.header-icons .nav-link i {
+    color: #cccccc;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.header-icons .nav-link:hover i {
+    color: #4caf50;
+}
+
+/* Dropdown personalizado */
+.dropdown-menu {
+    background-color: #212121;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+}
+
+.dropdown-menu .dropdown-item {
+    color: #dddddd;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #4caf50;
+    color: #ffffff;
+}
+
+.dropdown-divider {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+/* === Footer Oscuro === */
+.footer {
+    background: linear-gradient(90deg, #0a0a0a, #1a1a1a);
+    color: #dddddd;
+    padding: 40px 0;
+    font-family: 'Montserrat', sans-serif;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.7);
+}
+
+.footer h5 {
+    color: #4caf50;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.footer a {
+    color: #cccccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #4caf50;
+}
+
+.footer .form-control {
+    background-color: #121212;
+    border: 1px solid #333;
+    color: #ffffff;
+}
+
+.footer .form-control::placeholder {
+    color: #888888;
+}
+
+.footer .btn-primary {
+    background-color: #4caf50;
+    border: none;
+}
+
+.footer .btn-primary:hover {
+    background-color: #43a047;
+}
+
+.footer .social-icons a {
+    font-size: 1.4rem;
+    margin-right: 10px;
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.footer .social-icons a:hover {
+    color: #4caf50;
+}
+
+.footer .text-center {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 30px;
+    padding-top: 15px;
+    font-size: 0.9rem;
+    color: #aaaaaa;
+}
+/*Explorar*/
+/* === Estilo General === */
+body {
+    background-color: #0f0f0f;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* === Tarjetas de Producto === */
+.product-card {
+    background-color: #1e1e1e;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 255, 128, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0, 255, 128, 0.3);
+}
+
+.product-card .card-title,
+.product-card .card-text {
+    color: #ffffff;
+}
+
+.product-card .btn-outline-dark {
+    color: #4caf50;
+    border-color: #4caf50;
+}
+
+.product-card .btn-outline-dark:hover {
+    background-color: #4caf50;
+    color: #ffffff;
+}
+
+.product-card .btn-dark {
+    background-color: #4caf50;
+    border: none;
+}
+
+.product-card .btn-dark:hover {
+    background-color: #43a047;
+}
+
+/* === Filtros === */
+h3, h5 {
+    color: #ffffff;
+}
+
+/* Estilo base para cada ítem del filtro */
+.list-group-item {
+    background-color: #181818;
+    color: #dddddd;
+    border: 1px solid #333333;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+/* Efecto al pasar el mouse */
+.list-group-item:hover {
+    color: #00e676;
+    background-color: #232323;
+    box-shadow: 0 0 8px rgba(0, 255, 128, 0.2);
+    transform: scale(1.02);
+    z-index: 1;
+}
+
+/* Filtro Activo con brillo y gradiente */
+.list-group-item.active {
+    background: linear-gradient(90deg, #00c853, #64dd17);
+    color: #ffffff !important;
+    border: none;
+    font-weight: bold;
+    box-shadow: 0 0 15px #00e676;
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+/* Responsive para evitar desplazamiento raro en móviles */
+@media (max-width: 767px) {
+    .list-group-item.active,
+    .list-group-item:hover {
+        transform: none;
+    }
+}
+/*Tendencias*/
+/* === Tendencias Page Style === */
+
+main h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #4caf50; /* Verde principal */
+    margin-bottom: 0.5rem;
+}
+
+main p.lead {
+    color: #cccccc;
+    font-size: 1.2rem;
+}
+
+.card {
+    background: linear-gradient(145deg, #1a1a1a, #111111);
+    border: none;
+    border-radius: 1.2rem;
+    color: #f1f1f1;
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.1); /* Sombra verde */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(76, 175, 80, 0.3); /* Hover más brillante */
+}
+
+.card-title {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #4caf50;
+    margin-bottom: 0.75rem;
+}
+
+.card-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+}
+
+/* Responsive text center for small devices */
+@media (max-width: 768px) {
+    main h1 {
+        font-size: 2rem;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .card-text {
+        font-size: 0.95rem;
+    }
+}
+/*Nosotros*/
+/* === SOBRE NOSOTROS === */
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Lato', sans-serif;
+}
+
+/* Títulos principales */
+main h1, main h2 {
+    color: #4caf50;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Texto general */
+main p {
+    color: #cccccc;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+/* Texto destacado */
+main .lead {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #b5ffcf;
+}
+
+/* Imagen con efecto */
+main img {
+    border-radius: 1rem;
+    box-shadow: 0 0 25px rgba(76, 175, 80, 0.25);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+main img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(76, 175, 80, 0.4);
+}
+
+/* Separación inferior */
+.section-divider {
+    border-top: 2px solid #2e2e2e;
+    margin-top: 4rem;
+    padding-top: 3rem;
+}
+
+/* Centrado en textos explicativos */
+.text-center p,
+.text-center .lead {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    main h1,
+    main h2 {
+        font-size: 1.75rem;
+        text-align: center;
+    }
+
+    main p {
+        text-align: center;
+    }
+
+    .lead {
+        font-size: 1.1rem;
+    }
+
+    main img {
+        margin-top: 2rem;
+    }
+}
+/* ============================
+   CHECKOUT - TrendSnatch
+   ============================ */
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Lato', sans-serif;
+}
+
+h1, h4 {
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.text-primary {
+    color: #4caf50 !important;
+}
+
+.badge.bg-primary {
+    background-color: #4caf50 !important;
+}
+
+.card, .list-group-item {
+    background-color: #1e1e1e;
+    border: 1px solid #2c2c2c;
+    color: #e0e0e0;
+}
+
+.list-group-item strong,
+.list-group-item span,
+.list-group-item small {
+    color: #ccc;
+}
+
+input.form-control,
+select.form-control {
+    background-color: #2c2c2c;
+    border: 1px solid #444;
+    color: #ffffff;
+}
+
+input.form-control::placeholder {
+    color: #aaaaaa;
+}
+
+input.form-control:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+    background-color: #2c2c2c;
+    color: white;
+}
+
+.form-check-input:checked {
+    background-color: #4caf50;
+    border-color: #4caf50;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #43a047;
+}
+
+hr {
+    border-top: 1px solid #444;
+}
+
+.form-check-label {
+    color: #ccc;
+}
+
+.w-100.btn.btn-primary.btn-lg {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.list-group-item.total-no-hover {
+    cursor: default;  /* Cursor normal */
+    transition: none; /* Quita las transiciones */
+    transform: none;  /* No se levanta ni se mueve */
+    color: inherit;   /* Mantiene color normal */
+}
+
+.list-group-item.total-no-hover:hover {
+    background-color: transparent; /* No cambia de fondo */
+    box-shadow: none;               /* No se añade sombra */
+}
+/*Producto*/
+/* Estilos para producto.html (body id="producto-page") */
+
+#producto-page {
+    font-family: 'Lato', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Forzar color claro para todo texto dentro del body para evitar texto negro */
+#producto-page p,
+#producto-page span,
+#producto-page li,
+#producto-page label,
+#producto-page small,
+#producto-page a,
+#producto-page button,
+#producto-page input,
+#producto-page select,
+#producto-page option {
+    color: #e0e0e0 !important;
+}
+
+#producto-page h1,
+#producto-page h2,
+#producto-page h3,
+#producto-page h4,
+#producto-page h5,
+#producto-page h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #4caf50 !important; /* Verde principal */
+}
+
+/* Precio destacado */
+#producto-page .fs-3.fw-bold {
+    color: #4caf50 !important;
+    margin-bottom: 1rem;
+}
+
+/* Imagen producto */
+#producto-page img.img-fluid {
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+/* Contenedor iframe (video) */
+#producto-page .ratio {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+}
+
+/* Badges (red social origen) */
+#producto-page .badge.bg-dark {
+    background-color: #4caf50 !important;
+    font-weight: 600;
+    color: #121212 !important;
+}
+
+/* Formulario y botones */
+#producto-page form {
+    margin-top: 2rem;
+}
+
+#producto-page label.form-label {
+    font-weight: 600;
+    color: #b0b0b0 !important;
+}
+
+#producto-page select.form-select,
+#producto-page input.form-control {
+    background-color: #1e1e1e;
+    border: 1px solid #4caf50;
+    color: #e0e0e0 !important;
+}
+
+#producto-page select.form-select:focus,
+#producto-page input.form-control:focus {
+    border-color: #81c784;
+    box-shadow: 0 0 8px #81c784;
+    outline: none;
+    background-color: #2c2c2c;
+    color: #e0e0e0 !important;
+}
+
+#producto-page button.btn-primary {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: background-color; /* ← le faltaba el punto y coma */
+}
+/*Login*/
+/* Login */
+body.login-page {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #121212, #1e1e1e);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    overflow: hidden;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 2.5rem;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+/* Input campos */
+.form-floating > input.form-control {
+    background-color: #1e1e1e;
+    border: 1px solid #4caf50;
+    border-radius: 10px;
+    padding: 0.75rem;
+    color: #e0e0e0;
+    transition: all 0.3s ease;
+    box-shadow: none;
+}
+
+/* Efecto al hacer focus sin cambiar fondo a blanco */
+.form-floating > input.form-control:focus {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border-color: #81c784;
+    box-shadow: 0 0 8px #81c784;
+    outline: none;
+}
+
+/* Etiquetas */
+.form-floating > label {
+    color: #a8d5a3;
+    transition: color 0.3s ease;
+}
+
+.form-floating > input.form-control:focus ~ label {
+    color: #81c784;
+    font-weight: 600;
+}
+
+/* Botón */
+.login-container button.btn-primary {
+    background: linear-gradient(135deg, #2e7d32, #388e3c);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 10px;
+    color: white;
+    margin-top: 1.25rem;
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.5);
+    transition: all 0.3s ease;
+    letter-spacing: 0.03em;
+}
+
+.login-container button.btn-primary:hover {
+    background: #43a047;
+    box-shadow: 0 0 12px 2px #66bb6a;
+}
+
+/* Alertas */
+.alert {
+    border-radius: 16px;
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.alert-danger {
+    background-color: rgba(244, 67, 54, 0.9);
+    color: white;
+    box-shadow: 0 0 15px rgba(244, 67, 54, 0.9);
+}
+
+.alert-success {
+    background-color: rgba(76, 175, 80, 0.9);
+    color: white;
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.9);
+}
+
+/* Texto adicional */
+.login-container .mt-3 p {
+    color: #c8e6c8;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+}
+
+.login-container .mt-3 a {
+    color: #81c784;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-container .mt-3 a:hover {
+    color: #a5d6a7;
+    text-decoration: underline;
+}
+/*Registro*/
+/* ========================= */
+/* Registro */
+/* ========================= */
+
+body#registro-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: #121212; /* Fondo oscuro elegante */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #e0e0e0;
+    overflow: hidden;
+}
+
+.register-container {
+    max-width: 450px;
+    width: 100%;
+    padding: 2.5rem 2rem;
+    background-color: #1e1e1e;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    border: 1px solid #2e7d32;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.register-container h1 a {
+    color: #ffffff;
+    text-decoration: none;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+
+.register-container h1 a:hover {
+    color: #81c784;
+    text-decoration: underline;
+}
+
+/* Input fields limpios */
+.form-floating > input.form-control {
+    background-color: #2c2c2c;
+    border: 1px solid #4caf50;
+    border-radius: 10px;
+    color: #e0e0e0;
+    font-weight: 500;
+    box-shadow: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.form-floating > input.form-control:focus {
+    background-color: #333;
+    border-color: #81c784;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(129, 199, 132, 0.25);
+    color: #ffffff;
+}
+
+.form-floating > label {
+    color: #a8d5a3;
+    font-weight: 500;
+}
+
+.form-floating > input.form-control:focus ~ label {
+    color: #c8e6c9;
+    font-weight: 600;
+}
+
+/* Botón */
+.register-container button.btn-primary {
+    background-color: #4caf50;
+    border: none;
+    padding: 0.85rem 1.2rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.register-container button.btn-primary:hover {
+    background-color: #66bb6a;
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.5);
+}
+
+/* Texto y enlaces */
+.register-container p {
+    color: #c8e6c9;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+}
+
+.register-container a {
+    color: #a5d6a7;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.register-container a:hover {
+    color: #4caf50;
+    text-decoration: underline;
+}
+
+/* Forzar estilo oscuro en todos los modals */
+.modal-content {
+    background-color: #121212 !important;
+    color: #f0f0f0 !important;
+    border: 1px solid #2c2c2c;
+    border-radius: 10px;
+}
+
+.modal-header,
+.modal-footer {
+    background-color: #1e1e1e !important;
+    border-bottom: 1px solid #333 !important;
+    border-top: 1px solid #333 !important;
+}
+
+.modal-title {
+    color: #ffffff !important;
+}
+
+.modal-body label,
+.modal-body .form-label,
+.modal-body .form-text {
+    color: #cccccc !important;
+}
+
+.modal-body input,
+.modal-body textarea,
+.modal-body select {
+    background-color: #2c2c2c !important;
+    color: #ffffff !important;
+    border: 1px solid #444 !important;
+}
+
+.modal-body input::placeholder,
+.modal-body textarea::placeholder {
+    color: #aaaaaa !important;
+}
+
+.btn-close {
+    filter: invert(1);
+}
+/* ========================================
+   Productos - Gestión Admin
+======================================== */
+
+/* Título y botón superior */
+main h1 {
+    color: #f8f9fa;
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0b5ed7, #520dc2);
+    transform: scale(1.03);
+}
+
+/* Tabla de productos */
+.table {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: #2c2c2c;
+    color: #ffffff;
+    border-bottom: 2px solid #444;
+    font-weight: 600;
+}
+
+.table td {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    vertical-align: middle;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #2a2a2a;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #333;
+}
+
+/* Badges de visibilidad */
+.badge.bg-success {
+    background-color: #28a745 !important;
+}
+
+.badge.bg-secondary {
+    background-color: #6c757d !important;
+}
+
+/* Botones de acción */
+.btn-info {
+    background-color: #17a2b8;
+    border: none;
+    color: #fff;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+    transform: scale(1.03);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #bd2130;
+    transform: scale(1.03);
+}
+
+/* Modal para creación/edición */
+.modal-content {
+    background-color: #121212;
+    color: #f8f9fa;
+    border-radius: 10px;
+    border: 1px solid #2c2c2c;
+}
+
+.modal-header,
+.modal-footer {
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #333;
+    border-top: 1px solid #333;
+}
+
+.modal-title {
+    color: #ffffff;
+}
+
+.form-label,
+.form-text {
+    color: #cccccc;
+}
+
+.form-control,
+.form-select {
+    background-color: #2c2c2c;
+    color: #ffffff;
+    border: 1px solid #444;
+}
+
+.form-control::placeholder {
+    color: #aaaaaa;
+}
+
+.btn-close {
+    filter: invert(1);
+}
+
+

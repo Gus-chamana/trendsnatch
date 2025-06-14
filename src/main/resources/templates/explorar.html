@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Explorar - TrendSnatch</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header-nav}"></div>
+
+<main class="container my-5">
+    <div class="row">
+        <div class="col-lg-3">
+            <h3 class="mb-4">Filtros</h3>
+
+            <h5 class="mt-4">Red Social</h5>
+            <div class="list-group">
+                <a th:href="@{/explorar(categoria=${categoriaActiva})}"
+                   class="list-group-item list-group-item-action"
+                   th:classappend="${redSocialActiva == null ? 'active' : ''}">Todas</a>
+                <a th:each="red : ${redesSociales}"
+                   th:href="@{/explorar(red_social=${red}, categoria=${categoriaActiva})}"
+                   class="list-group-item list-group-item-action"
+                   th:classappend="${red == redSocialActiva ? 'active' : ''}"
+                   th:text="${red}">
+                </a>
+            </div>
+
+            <h5 class="mt-4">Tipo de Prenda</h5>
+            <div class="list-group">
+                <a th:href="@{/explorar(red_social=${redSocialActiva})}"
+                   class="list-group-item list-group-item-action"
+                   th:classappend="${categoriaActiva == null ? 'active' : ''}">Todas</a>
+                <a th:each="cat : ${categorias}"
+                   th:href="@{/explorar(categoria=${cat}, red_social=${redSocialActiva})}"
+                   class="list-group-item list-group-item-action"
+                   th:classappend="${cat == categoriaActiva ? 'active' : ''}"
+                   th:text="${cat}">
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            <h2 class="mb-4">Nuestra Colección</h2>
+
+            <div th:if="${#lists.isEmpty(productos)}" class="alert alert-info text-center">
+                <p class="h4">¡Vaya! No encontramos productos.</p>
+                <p>Intenta con otros filtros o <a th:href="@{/explorar}" class="alert-link">mira toda la colección.</a></p>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col" th:each="producto : ${productos}">
+                    <div class="card h-100 product-card">
+                        <a th:href="@{'/producto/' + ${producto.id}}">
+                            <img th:src="${producto.urlImagenReferencia}" class="card-img-top" alt="Imagen producto">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title" th:text="${producto.nombre}"></h5>
+                            <p class="card-text text-muted">Visto en <strong th:text="${producto.redSocialOrigen}"></strong></p>
+                            <p class="card-text fs-5 fw-bold" th:text="'S/ ' + ${#numbers.formatDecimal(producto.precio, 1, 'COMMA', 2, 'POINT')}"></p>
+                            <div class="mt-auto btn-group">
+                                <a th:href="@{'/producto/' + ${producto.id}}" class="btn btn-outline-dark">Ver Detalles</a>
+                                <a href="#" class="btn btn-dark"><i class="bi bi-cart-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer-main}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

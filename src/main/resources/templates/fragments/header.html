@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+</head>
+<body>
+
+<header th:fragment="header-nav">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}">TrendSnatch</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/explorar}">Explorar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/tendencias}">Tendencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/nosotros}">Nosotros</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link text-danger fw-bold" th:href="@{/admin/dashboard}">Panel Admin</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav header-icons">
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-search"></i></a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/carrito}"><i class="bi bi-cart"></i></a></li>
+                    <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>
+                            <span sec:authentication="name"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" th:href="@{/usuario/perfil}" sec:authorize="hasRole('USER')">
+                                    <i class="bi bi-person-lines-fill me-2"></i>Mi Cuenta
+                                </a>
+                                <a class="dropdown-item" th:href="@{/admin/perfil}" sec:authorize="hasRole('ADMIN')">
+                                    <i class="bi bi-person-badge-fill me-2"></i>Mi Perfil de Admin
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form th:action="@{/logout}" method="post">
+                                    <button type="submit" class="dropdown-item text-danger">
+                                        <i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" th:href="@{/login}"><i class="bi bi-person"></i> Iniciar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+</body>
+</html>

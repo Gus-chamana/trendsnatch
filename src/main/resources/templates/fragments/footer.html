@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<footer class="footer" th:fragment="footer-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h5>Navegación</h5>
+                <ul class="list-unstyled">
+                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li><a th:href="@{/explorar}">Explorar</a></li>
+                    <li><a th:href="@{/nosotros}">Nosotros</a></li>
+                    <li><a th:href="@{/tendencias}">Tendencias</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Contacto</h5>
+                <ul class="list-unstyled">
+                    <li><a href="mailto:soporte@trendsnatch.com">soporte@trendsnatch.com</a></li>
+                    <li><a href="#">WhatsApp</a></li>
+                </ul>
+                <div class="social-icons mt-3">
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-tiktok"></i></a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h5>Legal</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Políticas de Privacidad</a></li>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Suscríbete</h5>
+                <p>Recibe las últimas tendencias virales en tu correo.</p>
+                <form>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Tu correo electrónico">
+                        <button class="btn btn-primary" type="button">OK</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <p>&copy; <span th:text="${#dates.year(#dates.createNow())}"></span> TrendSnatch. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
