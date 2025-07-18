@@ -39,8 +39,8 @@
                         <p class="card-text text-muted" th:text="${producto.categoria}">Categoría</p>
                         <p class="card-text fs-5 fw-bold" th:text="'S/ ' + ${#numbers.formatDecimal(producto.precio, 1, 'COMMA', 2, 'POINT')}">S/ 99.90</p>
                         <div class="mt-auto btn-group">
-                            <a th:href="@{'/producto/' + ${producto.id}}" class="btn btn-outline-primary">Ver Detalles</a>
-                            <a href="#" class="btn btn-primary"><i class="bi bi-cart-plus"></i></a>
+                            <a th:href="@{'/producto/' + ${producto.id}}" class="btn btn-outline-primary bi bi-cart-plus"> Ver Detalles</a>
+                            <!--<a href="#" class="btn btn-primary"><i class="bi bi-cart-plus"></i></a>-->
                         </div>
                     </div>
                 </div>

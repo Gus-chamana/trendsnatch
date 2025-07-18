@@ -25,7 +25,7 @@
                         <img th:src="${item.producto.urlImagenReferencia}" width="100" class="rounded me-3">
                         <div class="flex-grow-1">
                             <h5 class="mb-1" th:text="${item.producto.nombre}">Nombre del Producto</h5>
-                            <p class="mb-1 text-muted" th:text="'S/ ' + ${#numbers.formatDecimal(item.producto.precio, 1, 'COMMA', 2, 'POINT')}"></p>
+                            <p class="mb-1 text-white" th:text="'S/ ' + ${#numbers.formatDecimal(item.producto.precio, 1, 'COMMA', 2, 'POINT')}"></p>
                             <p class="mb-0">Cantidad: <span th:text="${item.cantidad}"></span></p>
                         </div>
                         <div class="text-end">
