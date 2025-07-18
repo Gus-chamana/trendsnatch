@@ -1,6 +1,7 @@
 -- 1. Crear la base de datos
+DROP DATABASE trendsnatch_db;
 CREATE DATABASE trendsnatch_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
+DROP USER 'trendsnatch_user'@'localhost';
 -- 2. Crear un usuario y darle permisos (reemplaza 'admin123' por una contraseña segura)
 CREATE USER 'trendsnatch_user'@'localhost' IDENTIFIED BY 'admin1234';
 GRANT ALL PRIVILEGES ON trendsnatch_db.* TO 'trendsnatch_user'@'localhost';
@@ -70,3 +71,64 @@ INSERT INTO roles(nombre) VALUES('ROLE_USER');
 -- Insertar campo activo
 ALTER TABLE usuarios
 ADD COLUMN activo BOOLEAN NOT NULL DEFAULT TRUE;
+
+ALTER TABLE pedidos
+ADD COLUMN codigo_referencia VARCHAR(20) NULL UNIQUE AFTER total;
+
+-- Inserción de 8 productos de ejemplo en la tabla 'productos'
+INSERT INTO productos (nombre, descripcion, precio, stock, categoria, url_video_fuente, url_imagen_referencia, red_social_origen, visible) VALUES
+(
+    'Top Corset Floral Aesthetic',
+    'Top estilo corset con estampado floral, perfecto para un look coquette y aesthetic. Visto en los hauls más virales de TikTok. Material: Algodón y Spandex.',
+    89.90,
+    50,
+    'Blusas',
+    'https://www.tiktok.com/embed/75283593470445501500',
+    'https://img-1.kwcdn.com/thumbnail/s/01d83092ec4a60ba545669be161fe115_12b2b626c7e5.jpg?imageView2/2/w/1300/q/80/format/webp',
+    'TikTok',
+    TRUE
+),
+(
+    'Pantalón Cargo Ancho Streetwear',
+    'El pantalón cargo que no puede faltar en tu armario. Estilo ancho y cómodo, ideal para un look urbano y relajado. Popularizado en Reels de Instagram. Múltiples bolsillos funcionales.',
+    149.90,
+    35,
+    'Pantalones',
+    'https://www.tiktok.com/embed/7358608396808981765',
+    'https://www.projectxparis.com/74487-thickbox_default/pantalon-cargo-tecnico.jpg',
+    'TikTok',
+    TRUE
+),
+(
+    'Blusa Oversize Vintage',
+    'Blusa de algodón estilo oversize, tendencia TikTok verano 2025.',
+    449.00,
+    25,
+    'Blusas',
+    'https://www.tiktok.com/embed/v2/7226272281239469314',
+    'https://images.unsplash.com/photo-1517841905240-472988babdf9',
+    'tiktok',
+    TRUE
+),
+(
+    'Sudadera Minimalista',
+    'Sudadera básica con estampado minimalista, moda urbana.',
+    699.90,
+    15,
+    'Sudaderas',
+    'https://www.tiktok.com/embed/v2/7245763211179093250',
+    'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c',
+    'tiktok',
+    TRUE
+),
+(
+    'Vestido Midi Floral',
+    'Vestido midi estampado floral, tendencia primavera.',
+    799.00,
+    20,
+    'Vestidos',
+    'https://www.tiktok.com/embed/7528359347044550150',
+    'https://img-1.kwcdn.com/thumbnail/s/f39a1ba62a6a1d59a7720fec7e42bf2f_39003417c10f.jpg?imageView2/2/w/1300/q/80/format/webp',
+    'tiktok',
+    TRUE
+);

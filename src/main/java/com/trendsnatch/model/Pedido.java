@@ -25,4 +25,7 @@ public class Pedido {
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<DetallePedido> detalles;
+
+    @Column(name = "codigo_referencia", unique = true) // Añadimos la anotación para mapear a la columna
+    private String codigoReferencia;
 }

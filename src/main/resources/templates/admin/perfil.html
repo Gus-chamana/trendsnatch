@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Perfil de Administrador - TrendSnatch</title>
@@ -12,6 +12,16 @@
 
 <main class="container my-5">
   <h1 class="mb-4">Mi Perfil de Administrador</h1>
+
+  <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+    <span th:text="${successMessage}"></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <span th:text="${errorMessage}"></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
   <div class="row g-4">
     <div class="col-md-4">
       <div class="card">
@@ -24,7 +34,7 @@
         <div class="list-group list-group-flush">
           <a href="#datos-personales" class="list-group-item list-group-item-action active">Datos Personales</a>
           <a href="#seguridad" class="list-group-item list-group-item-action">Seguridad</a>
-          <a href="#notificaciones" class="list-group-item list-group-item-action">Configuración de Notificaciones</a>
+          <!--<a href="#notificaciones" class="list-group-item list-group-item-action">Configuración de Notificaciones</a>-->
         </div>
       </div>
     </div>
@@ -35,10 +45,10 @@
           <h5><i class="bi bi-person-lines-fill me-2"></i>Datos Personales</h5>
         </div>
         <div class="card-body">
-          <form>
+          <form th:action="@{/admin/perfil/actualizar-datos}" method="post">
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre Completo</label>
-              <input type="text" id="nombre" class="form-control" th:value="${admin.nombre}">
+              <input type="text" id="nombre" name="nombre" class="form-control" th:value="${admin.nombre}" required>
             </div>
             <div class="mb-3">
               <label for="correo" class="form-label">Correo Electrónico</label>
@@ -54,45 +64,25 @@
           <h5><i class="bi bi-key-fill me-2"></i>Seguridad</h5>
         </div>
         <div class="card-body">
-          <form>
+          <form th:action="@{/admin/perfil/cambiar-contrasena}" method="post">
             <h6>Cambiar Contraseña</h6>
             <div class="mb-3">
               <label for="pass-actual" class="form-label">Contraseña Actual</label>
-              <input type="password" id="pass-actual" class="form-control">
+              <input type="password" id="pass-actual" name="pass-actual" class="form-control" required>
             </div>
             <div class="mb-3">
               <label for="pass-nueva" class="form-label">Nueva Contraseña</label>
-              <input type="password" id="pass-nueva" class="form-control">
+              <input type="password" id="pass-nueva" name="pass-nueva" class="form-control" required>
             </div>
             <div class="mb-3">
               <label for="pass-confirmar" class="form-label">Confirmar Nueva Contraseña</label>
-              <input type="password" id="pass-confirmar" class="form-control">
+              <input type="password" id="pass-confirmar" name="pass-confirmar" class="form-control" required>
             </div>
             <button type="submit" class="btn btn-warning">Cambiar Contraseña</button>
           </form>
         </div>
       </div>
 
-      <div class="card" id="notificaciones">
-        <div class="card-header">
-          <h5><i class="bi bi-bell-fill me-2"></i>Configuración de Notificaciones</h5>
-        </div>
-        <div class="card-body">
-          <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" role="switch" id="notif-pedido" checked>
-            <label class="form-check-label" for="notif-pedido">Recibir email por cada nuevo pedido.</label>
-          </div>
-          <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" role="switch" id="notif-usuario" checked>
-            <label class="form-check-label" for="notif-usuario">Recibir email por cada nuevo usuario registrado.</label>
-          </div>
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="notif-stock">
-            <label class="form-check-label" for="notif-stock">Recibir email cuando un producto tenga bajo stock.</label>
-          </div>
-          <button type="submit" class="btn btn-primary mt-3">Guardar Preferencias</button>
-        </div>
-      </div>
     </div>
   </div>
 </main>

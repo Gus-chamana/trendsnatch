@@ -1,5 +1,6 @@
 package com.trendsnatch.service;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import com.trendsnatch.model.Pedido;
 import com.trendsnatch.model.Usuario;
 import com.trendsnatch.repository.PedidoRepository;
@@ -58,8 +59,13 @@ public class PedidoService {
      */
     @Transactional
     public Pedido save(Pedido pedido) {
-        // Aquí podrías añadir lógica adicional antes de guardar,
-        // como verificar el stock de los productos en el detalle del pedido.
+        // APLICAMOS LA LIBRERÍA APACHE COMMONS LANG3 PARA GENERAR CÓDIGOS ÚNICOS
+        // Solo si es un pedido nuevo (no tiene un ID aún)
+        if (pedido.getId() == null) {
+            // Usamos RandomStringUtils para generar 8 caracteres alfanuméricos en mayúsculas.
+            String codigoGenerado = RandomStringUtils.randomAlphanumeric(8).toUpperCase();
+            pedido.setCodigoReferencia("TS-" + codigoGenerado);
+        }
         return pedidoRepository.save(pedido);
     }
 
@@ -130,5 +136,6 @@ public class PedidoService {
     public List<Pedido> findTop5ByOrderByFechaPedidoDesc() {
         return pedidoRepository.findTop5ByOrderByFechaPedidoDesc();
     }
+
 
 }

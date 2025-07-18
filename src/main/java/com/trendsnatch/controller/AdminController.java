@@ -37,6 +37,15 @@ public class AdminController {
     @Autowired
     private DetallePedidoRepository detallePedidoRepository;
 
+    // --- MÉTODO PARA PROCESAR LA CREACIÓN DE UN USUARIO ---
+    @PostMapping("/usuarios/crear")
+    public String crearUsuario(@ModelAttribute Usuario usuario, RedirectAttributes redirectAttributes) {
+        // Aquí puedes añadir validaciones, como verificar si el correo ya existe
+
+        usuarioService.crearUsuarioPorAdmin(usuario);
+        redirectAttributes.addFlashAttribute("successMessage", "¡Usuario creado correctamente!");
+        return "redirect:/admin/usuarios";
+    }
 
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
@@ -77,7 +86,8 @@ public class AdminController {
     @GetMapping("/usuarios")
     public String gestionUsuarios(Model model) {
         model.addAttribute("usuarios", usuarioService.findAll());
-        model.addAttribute("roles", rolRepository.findAll()); // Pasa la lista de roles para el modal
+        model.addAttribute("roles", rolRepository.findAll());
+        model.addAttribute("nuevoUsuario", new Usuario());   // Pasa la lista de roles para el modal
         return "admin/usuarios";
     }
 
@@ -182,6 +192,47 @@ public class AdminController {
 
         // Devolvemos el nombre de la nueva plantilla HTML que crearemos
         return "admin/perfil";
+    }
+
+    // --- MÉTODO NUEVO PARA ACTUALIZAR DATOS ---
+    @PostMapping("/perfil/actualizar-datos")
+    public String actualizarDatosAdmin(Authentication authentication,
+                                       @RequestParam("nombre") String nuevoNombre,
+                                       RedirectAttributes redirectAttributes) {
+        String correo = authentication.getName();
+        Usuario admin = usuarioService.findByCorreo(correo).get();
+
+        usuarioService.actualizarDatosAdmin(admin.getId(), nuevoNombre);
+
+        redirectAttributes.addFlashAttribute("successMessage", "¡Datos actualizados correctamente!");
+        return "redirect:/admin/perfil";
+    }
+
+    // --- MÉTODO NUEVO PARA CAMBIAR CONTRASEÑA ---
+    @PostMapping("/perfil/cambiar-contrasena")
+    public String cambiarContrasenaAdmin(Authentication authentication,
+                                         @RequestParam("pass-actual") String passActual,
+                                         @RequestParam("pass-nueva") String passNueva,
+                                         @RequestParam("pass-confirmar") String passConfirmar,
+                                         RedirectAttributes redirectAttributes) {
+
+        if (!passNueva.equals(passConfirmar)) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Las contraseñas nuevas no coinciden.");
+            return "redirect:/admin/perfil#seguridad";
+        }
+
+        String correo = authentication.getName();
+        Usuario admin = usuarioService.findByCorreo(correo).get();
+
+        boolean exito = usuarioService.cambiarContrasenaAdmin(admin.getId(), passActual, passNueva);
+
+        if (exito) {
+            redirectAttributes.addFlashAttribute("successMessage", "¡Contraseña cambiada correctamente!");
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessage", "La contraseña actual es incorrecta.");
+        }
+
+        return "redirect:/admin/perfil#seguridad";
     }
 
 }
